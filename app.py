@@ -39,12 +39,11 @@ def products():
     print(allTodo)
     return 'This is product page'
 
-@app.route('/delete/int:sno>')
-def delete():
-    allTodo = Todo.query.filter_by(sno=sno).first()
+@app.route('/delete/<int:sno>')
+def delete(sno):
+    todo = Todo.query.filter_by(sno=sno).first()
     db.session.delete(todo)
     db.session.commit()
-    print(allTodo)
     return redirect("/")
 
 @app.route('/update')
